@@ -27,3 +27,5 @@ function calculateTotalCost(itemType, price, quantity) {
 
 	return totalCost;
 }
+
+console.log(calculateTotalCost("book", 20, 5));
