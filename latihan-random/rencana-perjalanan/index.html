@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Biaya Perjalanan</title>
+</head>
+<body>
+    <h1>Hitung Jarak Tempuh dan Biaya Perjalanan</h1>
+    <form id="costForm">
+        <label for="lat1">Latitude 1:</label>
+        <input type="number" id="lat1" name="lat1" step="any" required><br><br>
+        <label for="lon1">Longitude 1:</label>
+        <input type="number" id="lon1" name="lon1" step="any" required><br><br>
+        <label for="lat2">Latitude 2:</label>
+        <input type="number" id="lat2" name="lat2" step="any" required><br><br>
+        <label for="lon2">Longitude 2:</label>
+        <input type="number" id="lon2" name="lon2" step="any" required><br><br>
+        <label for="costPerKm">Biaya per km:</label>
+        <input type="number" id="costPerKm" name="costPerKm" step="any" required><br><br>
+        <button type="submit">Hitung Biaya</button>
+    </form>
+    <h2 id="result"></h2>
+    <script src="script.js"></script>
+</body>
+</html>
