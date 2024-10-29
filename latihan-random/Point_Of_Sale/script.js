@@ -3,8 +3,16 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
         const product = this.parentElement;
         const name = product.getAttribute('data-name');
         const price = parseFloat(product.getAttribute('data-price'));
-
-        addToCart(name, price);
+        let quantity = parseInt(product.getAttribute('data-quantity'));
+        
+        if (quantity > 0) {
+            addToCart(name, price);
+            quantity--;
+            product.setAttribute('data-quantity', quantity);
+            product.querySelector('span').textContent = `${name} - ${price.toFixed(2)} (Stock: ${quantity})`;
+        } else {
+            alert (`Stok ${name} habis!`);
+        }
     });
 });
 
