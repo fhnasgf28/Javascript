@@ -27,7 +27,7 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
         <h2>${student.name}</h2>
         <p>Nilai Matematika: ${student.grades.math}</p>
         <p>Nilai Bahasa Inggris: ${student.grades.english}</p>
-        <p>Nilai Ilmu Pengetahuan Sosial: ${student.grades.science}</p>
+        <p>Nilai Ilmu Pengetahuan Alam: ${student.grades.science}</p>
         `;
     } else {
         resultsDiv.innerHTML = '<p>Student not found.</p>';
