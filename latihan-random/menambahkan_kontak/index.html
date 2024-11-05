@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buku Alamat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Buku Alamat</h1>
+
+    <div id="form-container">
+        <input type="text" id="name" placeholder="Nama">
+        <input type="text" id="phone" placeholder="Nomor Telepon">
+        <input type="text" id="email" placeholder="Email">
+        <button onclick="addContact()">Tambah</button>
+    </div>
+
+    <table id="contact-list">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Nomor Telepon</th>
+                <th>Email</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="contact-body">
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
