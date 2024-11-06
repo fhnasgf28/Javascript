@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', loadTodoLists);
 
 // Event Listeners
 buttontdl.addEventListener('click', clickButton);
-listtdl.addEventListener('click', okedel);
+listtdl.addEventListener('click', okdel);
 
 // function to handle button click 
 function clickButton(e) {
@@ -52,4 +52,49 @@ function createTodoElement(todo) {
     itemall.appendChild(trashButton);
 
     listtdl.appendChild(itemall);
+}
+// Function to save todo list to localStorage
+function saveTodoList(todo) {
+    const todos = getTodosFromStorage();
+    todos.push(todo);
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+// Function to load todos from localStorage
+function loadTodoLists() {
+    const todos = getTodosFromStorage();
+    todos.forEach(todo => {
+        createTodoElement(todo);
+    });
+}
+
+// Function to retrieve todos from localStorage
+function getTodosFromStorage() {
+    return JSON.parse(localStorage.getItem('todos')) || [];
+}
+
+// Function to handle checking and deleting todo items
+function okdel(e) {
+    const item = e.target;
+
+    // Check functionality
+    if (item.classList[0] === 'check-button') {
+        const todolist = item.parentElement;
+        todolist.classList.toggle('checklist');
+    }
+
+    // Delete functionality
+    if (item.classList[0] === 'trash-button') {
+        const todolist = item.parentElement;
+        const todoId = todolist.getAttribute('data-id');
+        todolist.remove();
+        removeTodoFromStorage(todoId);
+    }
+}
+
+// Function to remove todo list from local storage
+function removeTodoFromStorage(todoId) {
+    const todos = getTodosFromStorage();
+    const updatedTodos = todos.filter(todo => todo.id != todoId);
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
 }
