@@ -1,0 +1,25 @@
+1.  Penambahan untuk menu history bookingan
+2.  History bookingan menampilkan keselurahan data booking order
+3.  Data akan di cancel setiap 3 hari sekali via scheduled action jika tidak di proses
+4.  Penambahan filter untuk lihat data booking yang akan expired (date_booking + 3 hari ==   
+    today)
+5.  Untuk data di booking bisa dijadikan quotation, syarat ny perlu ada 1 tombol di menu booking 
+    order untuk ngerubah data tsb menjadi rfq
+6.  Penambahan 1 table (booking.configuration), isi ny adalah konfigurasi dari booking, ada 
+    kolom maks booking per booking order (float), qty limit by percentage (float)
+7.  Dibuatin menu ny dan diletakin di bagian sales>configuration
+8.  Penambahan raise error di booking order jika qty yang di booking melebihi qty maksimal (cek 
+    dari table booking configuration)
+9.  Jika jumlah total booking di product udah mencapai limit, maka di order line gak akan muncul 
+    product bersangkutan (dikasih domain), atau bole juga dibuat raise error jumlah total  
+    booking product sudah mencapai limit (pilih salah 1 opsi)
+10. Sambungan dari nomor 7, untuk mengetahui product udah mencapai limit booking menggunakan 
+    formula berikut :  qty on hand + (qty on hand * limit by percentage/100), limit by   
+    percentage di ambil dari configurasi tadi
+11. Penambahan logic di def write, ketika data sudah menjadi rfq, nomor order akan tergenerate 
+    ulang, tetapi nomor lama masih tetap ada sbgai history
+12. Smart button link rfq n booking order, di sisipin di rfq, hanya akan muncul di menu rfq aja
+
+git add .
+git commit -m "edit the file to match assignment 2, and inherit to assignment 1 module (sale_order_inherit)"
+git push -f origin main
