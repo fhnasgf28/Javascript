@@ -1,15 +1,16 @@
 async function fetchTodos() {
     const response = await fetch('/todos');
     const todos = await response.json();
-    const list = document.getElementById('todo-list');
+
+    const list = document.getElementById('todos');
     list.innerHTML = '';
     todos.forEach(todo => {
         const li = document.createElement('li');
         li.className = todo.completed ? 'completed' : '';
         li.textContent = todo.task;
-        li.onclick = () => toggleComplete(todo.id);
+        li.onclick = () => toggleTodoCompleted(todo.id);
         list.appendChild(li);
-    });
+    })
 }
 
 async function addTask() {
