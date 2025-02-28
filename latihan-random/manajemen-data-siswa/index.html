@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Manajemen Data Siswa</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        input, button {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Manajemen Data Siswa</h2>
+
+<div>
+    <label>Nama Siswa:</label>
+    <input type="text" id="nama_siswa">
+</div>
+<div>
+    <label>Kelas:</label>
+    <input type="text" id="kelas">
+</div>
+<div>
+    <label>Nilai:</label>
+    <input type="number" id="nilai">
+</div>
+<button onclick="tambahSiswa()">Tambah Siswa</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Kelas</th>
+            <th>Nilai</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody id="tabel_siswa">
+        <!-- Data Siswa akan ditampilkan di sini -->
+    </tbody>
+</table>
+
+<script src="script.js"></script>
+
+</body>
+</html>
