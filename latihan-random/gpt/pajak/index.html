@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Kalkulator Pajak Perdagangan</title>
+</head>
+<body>
+
+<h2>Kalkulator Pajak Perdagangan</h2>
+
+<label>Harga Barang: </label>
+<input type="number" id="harga" placeholder="Masukkan Harga"><br>
+
+<label>Jumlah Barang: </label>
+<input type="number" id="jumlah" placeholder="Masukkan Jumlah"><br>
+
+<label>Kategori Barang: </label>
+<select id="kategori">
+    <option value="elektronik">Elektronik (10%)</option>
+    <option value="pakaian">Pakaian (5%)</option>
+    <option value="makanan">Makanan (2%)</option>
+</select><br>
+
+<button onclick="hitungPajak()">Hitung Pajak</button>
+
+<h3>Hasil Perhitungan:</h3>
+<p>Total Sebelum Pajak: <span id="totalSebelum"></span></p>
+<p>Pajak: <span id="totalPajak"></span></p>
+<p>Total Setelah Pajak: <span id="totalSetelah"></span></p>
+
+<script src="script.js"></script>
+
+</body>
+</html>
