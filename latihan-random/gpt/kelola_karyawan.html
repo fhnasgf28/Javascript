@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Karyawan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🏢 Sistem Manajemen Karyawan</h2>
+
+    <!-- Form untuk menambahkan karyawan -->
+    <form id="karyawanForm">
+        <input type="text" id="id" placeholder="ID Karyawan" required>
+        <input type="text" id="nama" placeholder="Nama Karyawan" required>
+        <input type="text" id="jabatan" placeholder="Jabatan" required>
+        <input type="number" id="gaji" placeholder="Gaji" required>
+        <button type="submit">Tambah Karyawan</button>
+    </form>
+
+    <!-- Tabel daftar karyawan -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Gaji</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="karyawanTable">
+            <!-- Data karyawan akan muncul di sini -->
+        </tbody>
+    </table>
+
+    <script>
+        const STORAGE_KEY = "karyawan_data";
+
+        function loadData() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        }
+
+        function saveData(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function renderKaryawan() {
+            const karyawan = loadData();
+            const tableBody = document.getElementById("karyawanTable");
+            tableBody.innerHTML = ""; // Bersihkan sebelum render ulang
+
+            karyawan.forEach((k, index) => {
+                let row = tableBody.insertRow();
+                row.insertCell(0).innerText = k.id;
+                row.insertCell(1).innerText = k.nama;
+                row.insertCell(2).innerText = k.jabatan;
+                row.insertCell(3).innerText = k.gaji;
+                let deleteBtn = document.createElement("button");
+                deleteBtn.innerText = "Hapus";
+                deleteBtn.classList.add("delete-btn");
+                deleteBtn.onclick = () => hapusKaryawan(index);
+                row.insertCell(4).appendChild(deleteBtn);
+            });
+        }
+
+        function tambahKaryawan(event) {
+            event.preventDefault();
+            let id = document.getElementById("id").value;
+            let nama = document.getElementById("nama").value;
+            let jabatan = document.getElementById("jabatan").value;
+            let gaji = document.getElementById("gaji").value;
+
+            let karyawan = loadData();
+            karyawan.push({ id, nama, jabatan, gaji });
+            saveData(karyawan);
+            renderKaryawan();
+
+            document.getElementById("karyawanForm").reset(); // Reset form
+        }
+
+        function hapusKaryawan(index) {
+            let karyawan = loadData();
+            karyawan.splice(index, 1);
+            saveData(karyawan);
+            renderKaryawan();
+        }
+
+        document.getElementById("karyawanForm").addEventListener("submit", tambahKaryawan);
+
+        // Render daftar karyawan saat halaman dimuat
+        renderKaryawan();
+    </script>
+
+</body>
+</html>
