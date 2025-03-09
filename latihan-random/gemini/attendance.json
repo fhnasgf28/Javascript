@@ -1,0 +1,36 @@
+{
+    "employees": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "attendance": [
+          {
+            "date": "2023-10-26",
+            "timeIn": "08:00",
+            "timeOut": "17:00"
+          },
+          {
+            "date": "2023-10-27",
+            "timeIn": "08:30",
+            "timeOut": "17:30"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Jane Smith",
+        "attendance": [
+          {
+            "date": "2023-10-26",
+            "timeIn": "09:00",
+            "timeOut": "18:00"
+          },
+          {
+            "date": "2023-10-27",
+            "timeIn": "09:30",
+            "timeOut": "18:30"
+          }
+        ]
+      }
+    ]
+  }
