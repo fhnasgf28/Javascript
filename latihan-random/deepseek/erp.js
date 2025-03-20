@@ -70,6 +70,19 @@ class Inventory {
         this.products.forEach(product => product.displayInfo());
         console.log("====================");
     }
+    exportToJSON() {
+        const productsData = this.products.map(product => ({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: product.quantity,
+            category: {
+                id: product.category.id,
+                name: product.category.name
+            }
+        }))
+        return JSON.stringify({ products: productsData });
+    }
 }
 
 // contoh penggunaan class
@@ -104,3 +117,7 @@ inventory.removeProduct(3);
 
 // menampilkan semua product
 inventory.displayAllProducts();
+
+// export data ke JSON
+const jsonData = inventory.exportToJSON();
+console.log(jsonData);
