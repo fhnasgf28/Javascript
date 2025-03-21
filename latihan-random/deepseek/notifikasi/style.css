@@ -7,6 +7,8 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
+    flex-direction: column;
+    gap: 10px;
 }
 
 button {
@@ -18,25 +20,36 @@ button {
     color: white;
     border-radius: 5px;
 }
+
 button:hover {
     background-color: #0056b3;
 }
 
 .notification {
     position: fixed;
-    top: 20px;
     right: -300px; /* Awalnya disembunyikan di luar layar */
     background-color: #28a745;
     color: white;
     padding: 15px 25px;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: right 0.5s ease-in-out;
+    transition: right 0.5s ease-in-out, top 0.5s ease-in-out;
     opacity: 0;
     visibility: hidden;
 }
-.notification.han {
+
+.notification.show {
     right: 20px; /* Muncul di sebelah kanan */
     opacity: 1;
     visibility: visible;
+}
+
+.notification.success {
+    background-color: #28a745;
+    top: 20px; /* Posisi default untuk notifikasi success */
+}
+
+.notification.error {
+    background-color: #dc3545;
+    top: 80px; /* Posisi di bawah notifikasi success */
 }
