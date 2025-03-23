@@ -1,0 +1,4 @@
+body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+.menu-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ccc; }
+.cart { margin-top: 20px; padding: 10px; border: 1px solid #000; }
+.cart-item { display: flex; justify-content: space-between; padding: 5px 0; }
