@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sistem absensi karyawan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sistem Absensi Karyawan</h1>
+        <label for="tanggal">Pilih Tanggal:</label>
+        <input type="date" id="tanggal" onchange="cariAbsensi()">
+        <table id="absensiTable">
+            <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nama</th>
+                  <th>Tanggal</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="tabelBody"></tbody>
+            </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
