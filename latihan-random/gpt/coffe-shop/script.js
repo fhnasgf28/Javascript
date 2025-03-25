@@ -47,8 +47,7 @@ function updateCart() {
         div.classList.add("cart-item");
         div.innerHTML = `
             <p>${item.name} - Rp ${item.price.toLocaleString()}</p>
-            <button class="remove-from-cart" data-index="${index}">Remove</button>
-        `;
+            <button onclick="removeFromCart(${index})">Remove</button>`;
         cartDiv.appendChild(div);
     })
     const total = cart.reduce((sum, item) => sum + item.price, 0);
