@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zakat penghasilan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Kalkulator pajak & zakat</h2>
+        <label for="income">Penghasilan Tahunan (Rp)</label>
+        <input type="number" id="income" placeholder="Masukkan penghasilan">
+
+        <label for="taxRate">Persentase Pajak(%)</label>
+        <input type="number" id="taxRate" value="10">
+
+        <label for="zakatRate">Persentase Zakat (%):</label>
+        <input type="number" id="zakatRate" value="2.5">
+        
+        <button onclick="calculateTaxZakat()">Hitung</button>
+
+        <h3>Hasil:</h3>
+        <p id="taxResult">Pajak: Rp 0</p>
+        <p id="zakatResult">Zakat: Rp 0</p>
+        <p id="netIncome">Penghasilan Bersih: Rp 0</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
