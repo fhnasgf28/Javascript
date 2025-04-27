@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoo Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #667eea;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            left: -10px;
+            top: 0;
+            background: #667eea;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold text-indigo-600">OdooDev</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#experience" class="nav-link">Experience</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+            <div class="flex flex-col space-y-3">
+                <a href="#home" class="nav-link py-2">Home</a>
+                <a href="#about" class="nav-link py-2">About</a>
+                <a href="#skills" class="nav-link py-2">Skills</a>
+                <a href="#projects" class="nav-link py-2">Projects</a>
+                <a href="#experience" class="nav-link py-2">Experience</a>
+                <a href="#contact" class="nav-link py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg text-white pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm <span class="text-yellow-300">John Doe</span></h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">Professional Odoo Developer</h2>
+                    <p class="text-lg mb-8 opacity-90">I build customized Odoo solutions that streamline business processes and boost productivity.</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300">Hire Me</a>
+                        <a href="#projects" class="border-2 border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-indigo-600 transition duration-300">View Work</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 bg-indigo-400 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Profile" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-5 -right-5 bg-white text-indigo-600 p-4 rounded-lg shadow-lg">
+                            <div class="text-2xl font-bold">5+</div>
+                            <div class="text-sm">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-indigo-100 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-semibold mb-4">Who am I?</h3>
+                    <p class="text-gray-600 mb-6">
+                        I'm a passionate Odoo Developer with over 5 years of experience in developing, customizing, and implementing Odoo ERP solutions for businesses across various industries. My expertise lies in creating tailored solutions that perfectly fit my clients' business needs.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        I specialize in Odoo module development, customization, integration with third-party systems, and performance optimization. My goal is to help businesses automate their processes and improve efficiency through well-designed Odoo solutions.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <p class="font-medium">Name: <span class="text-gray-600">John Doe</span></p>
+                            <p class="font-medium">Email: <span class="text-gray-600">john@odoodev.com</span></p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Experience: <span class="text-gray-600">5+ Years</span></p>
+                            <p class="font-medium">Location: <span class="text-gray-600">Jakarta, Indonesia</span></p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-indigo-700 transition duration-300 flex items-center">
+                            <i class="fas fa-download mr-2"></i> Download CV
+                        </a>
+                        <a href="#contact" class="border-2 border-indigo-600 text-indigo-600 px-6 py-2 rounded-lg font-medium hover:bg-indigo-600 hover:text-white transition duration-300">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">My Skills</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">I've worked with a variety of technologies in the Odoo ecosystem. Here are my core competencies:</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <div class="skill-badge bg-white p-6 rounded-lg shadow-md hover:shadow-lg text-center">
+                    <div class="text-indigo-600 text-4xl mb-3">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Python</h3>
+                    <p class="text-gray-600 text-sm">Advanced Odoo module development</p>
+                </div>
+                <div class="skill-badge bg-white p-6 rounded-lg shadow-md hover:shadow-lg text-center">
+                    <div class="text-indigo-600 text-4xl mb-3">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">PostgreSQL</h3>
+                    <p class="text-gray-600 text-sm">Database design & optimization</p>
+                </div>
+                <div class="skill-badge bg-white p-6 rounded-lg shadow-md hover:shadow-lg text-center">
+                    <div class="text-indigo-600 text-4xl mb-3">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">JavaScript</h3>
+                    <p class="text-gray-600 text-sm">Odoo web client customization</p>
+                </div>
+                <div class="skill-badge bg-white p-6 rounded-lg shadow-md hover:shadow-lg text-center">
+                    <div class="text-indigo-600 text-4xl mb-3">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">XML</h3>
+                    <p class="text-gray-600 text-sm">Views & QWeb templates</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold mb-6">Technical Proficiency</h3>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Odoo Module Development</span>
+                            <span class="text-indigo-600">95%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Odoo Customization</span>
+                            <span class="text-indigo-600">90%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Odoo Integration</span>
+                            <span class="text-indigo-600">85%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Performance Optimization</span>
+                            <span class="text-indigo-600">88%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Odoo Deployment</span>
+                            <span class="text-indigo-600">80%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">My Projects</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Here are some of my recent Odoo projects that I've developed for clients across different industries.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Manufacturing ERP" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold">Manufacturing ERP</h3>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs px-2 py-1 rounded">Odoo 15</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Customized manufacturing module with advanced production planning, quality control, and inventory management features.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Python</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">XML</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">PostgreSQL</span>
+                        </div>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="E-commerce Integration" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold">E-commerce Integration</h3>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs px-2 py-1 rounded">Odoo 16</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Seamless integration between Odoo and multiple e-commerce platforms with automated order processing and inventory sync.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Python</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">REST API</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Hospital Management" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold">Hospital Management</h3>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs px-2 py-1 rounded">Odoo 14</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Comprehensive hospital management system with patient records, appointment scheduling, billing, and pharmacy modules.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Python</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">XML</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">JavaScript</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">PostgreSQL</span>
+                        </div>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Accounting Automation" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold">Accounting Automation</h3>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs px-2 py-1 rounded">Odoo 15</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Automated accounting processes with bank statement imports, reconciliation, and custom financial reporting.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Python</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">XML</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">CSV</span>
+                        </div>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="HR Recruitment" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold">HR Recruitment</h3>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs px-2 py-1 rounded">Odoo 16</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Enhanced recruitment module with applicant tracking, skill assessment, and interview scheduling features.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Python</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">XML</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1103&q=80" alt="POS Customization" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold">POS Customization</h3>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs px-2 py-1 rounded">Odoo 14</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Custom Point of Sale system with barcode scanning, loyalty programs, and multi-store inventory management.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">JavaScript</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Python</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">XML</span>
+                        </div>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-indigo-600 text-indigo-600 font-medium rounded-lg hover:bg-indigo-600 hover:text-white transition duration-300">
+                    View All Projects
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Work Experience</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">My professional journey as an Odoo Developer and the companies I've worked with.</p>
+            
+            <div class="relative">
+                <!-- Timeline -->
+                <div class="border-l-2 border-indigo-200 pl-8 space-y-8">
+                    <!-- Experience 1 -->
+                    <div class="relative timeline-item">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-semibold">Senior Odoo Developer</h3>
+                                <span class="bg-indigo-100 text-indigo-600 text-xs px-2 py-1 rounded">2021 - Present</span>
+                            </div>
+                            <h4 class="text-lg text-indigo-600 mb-2">TechSolutions Inc.</h4>
+                            <p class="text-gray-600 mb-4">
+                                Leading a team of Odoo developers to deliver customized ERP solutions for clients across Southeast Asia. Responsible for architecture design, code reviews, and complex module development.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Odoo 16</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Python</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">PostgreSQL</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Docker</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience 2 -->
+                    <div class="relative timeline-item">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-semibold">Odoo Developer</h3>
+                                <span class="bg-indigo-100 text-indigo-600 text-xs px-2 py-1 rounded">2019 - 2021</span>
+                            </div>
+                            <h4 class="text-lg text-indigo-600 mb-2">ERP Solutions Co.</h4>
+                            <p class="text-gray-600 mb-4">
+                                Developed and customized Odoo modules for various clients. Worked on integrations with third-party systems and implemented complex business logic.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Odoo 13-15</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Python</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">JavaScript</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">REST API</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience 3 -->
+                    <div class="relative timeline-item">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-semibold">Junior Odoo Developer</h3>
+                                <span class="bg-indigo-100 text-indigo-600 text-xs px-2 py-1 rounded">2017 - 2019</span>
+                            </div>
+                            <h4 class="text-lg text-indigo-600 mb-2">Digital Business Solutions</h4>
+                            <p class="text-gray-600 mb-4">
+                                Started my career as a junior developer, learning Odoo framework and contributing to small customization projects. Gained experience in module development and basic configurations.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Odoo 11-12</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Python</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">XML</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Get In Touch</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Have a project in mind or want to discuss potential collaboration? Feel free to reach out!</p>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <div class="bg-indigo-50 rounded-lg p-8 h-full">
+                        <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Email</h4>
+                                    <p class="text-gray-600">john@odoodev.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Phone</h4>
+                                    <p class="text-gray-600">+62 812 3456 7890</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Location</h4>
+                                    <p class="text-gray-600">Jakarta, Indonesia</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-medium mb-4">Follow Me</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-indigo-100 text-indigo-600 p-3 rounded-full hover:bg-indigo-200 transition duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-indigo-100 text-indigo-600 p-3 rounded-full hover:bg-indigo-200 transition duration-300">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="bg-indigo-100 text-indigo-600 p-3 rounded-full hover:bg-indigo-200 transition duration-300">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-indigo-100 text-indigo-600 p-3 rounded-full hover:bg-indigo-200 transition duration-300">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <form class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="text-2xl font-bold text-indigo-400">OdooDev</div>
+                    <p class="text-gray-400 mt-1">Professional Odoo Development Services</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 OdooDev. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Add shadow to navbar on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
