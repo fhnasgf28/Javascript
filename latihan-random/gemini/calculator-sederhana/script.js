@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     operationButtons.forEach(button => {
         button.addEventListener('click', function() {
+            console.log("Tombol diklik!");
             const angka1 = parseFloat(angka1Input.value);
             const angka2 = parseFloat(angka2Input.value);
             const operation = this.dataset.operation;
