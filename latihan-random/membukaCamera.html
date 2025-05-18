@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uji Coba Kamera Web</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        video {
+            border: 2px solid #333;
+            background-color: #eee;
+            width: 640px; /* Lebar video */
+            height: 480px; /* Tinggi video */
+            transform: scaleX(-1); /* Membalik horizontal agar terlihat seperti cermin */
+            object-fit: cover; /* Memastikan video mengisi area tanpa distorsi */
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        canvas {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            display: none; /* Sembunyikan canvas secara default */
+        }
+        img {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            max-width: 640px;
+            height: auto;
+            display: none; /* Sembunyikan gambar secara default */
+        }
+    </style>
+</head>
+<body>
+    <h1>Uji Coba Kamera Web</h1>
+
+    <video id="videoElement" autoplay muted></video>
+
+    <button id="captureButton">Ambil Foto</button>
+
+    <canvas id="canvas" width="640" height="480"></canvas>
+
+    <img id="photo" alt="Foto yang Diambil">
+
+    <script>
+        // Ambil referensi ke elemen HTML
+        const video = document.getElementById('videoElement');
+        const captureButton = document.getElementById('captureButton');
+        const canvas = document.getElementById('canvas');
+        const photo = document.getElementById('photo');
+        const context = canvas.getContext('2d'); // Dapatkan konteks 2D untuk menggambar di canvas
+
+        // Fungsi untuk memulai stream kamera
+        async function startCamera() {
+            try {
+                // Minta akses ke kamera video
+                // `constraints` ini bisa diubah untuk memilih kamera tertentu atau resolusi
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream; // Hubungkan stream ke elemen video
+                console.log("Kamera berhasil diakses!");
+            } catch (err) {
+                console.error("Gagal mengakses kamera: ", err);
+                alert("Tidak dapat mengakses kamera. Pastikan Anda mengizinkan akses kamera di browser Anda.");
+            }
+        }
+
+        // Fungsi untuk mengambil snapshot dari video dan menampilkannya
+        captureButton.addEventListener('click', () => {
+            // Gambar frame video saat ini ke canvas
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Dapatkan data gambar dari canvas sebagai URL data (Base64)
+            const imageDataURL = canvas.toDataURL('image/jpeg', 0.9); // Format JPEG, kualitas 90%
+
+            // Tampilkan gambar di elemen <img>
+            photo.setAttribute('src', imageDataURL);
+            photo.style.display = 'block'; // Tampilkan elemen gambar
+            canvas.style.display = 'none'; // Sembunyikan canvas
+        });
+
+        // Panggil fungsi untuk memulai kamera saat halaman dimuat
+        window.onload = startCamera;
+    </script>
+</body>
+</html>
