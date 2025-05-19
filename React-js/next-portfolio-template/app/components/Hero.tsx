@@ -76,7 +76,9 @@ export default function Hero() {
                 whileTap={{ scale: 0.95 }}
                 className="group px-8 py-4 bg-transparent border border-purple-500/20 dark:border-purple-500/30 hover:border-purple-500 text-purple-600 dark:text-purple-400 rounded-xl transition-all duration-300 hover:bg-purple-500/5 dark:hover:bg-purple-500/10"
               >
-                <span className="flex items-center justify-center gap-2">
+                <span
+                  className="flex items-center justify-center gap-2"
+                >
                   Contact Me
                   <svg
                     className="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
