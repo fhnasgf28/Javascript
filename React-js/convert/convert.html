@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Convert Undangan ke Video</title>
+  <style>
+    iframe {
+      width: 360px;
+      height: 640px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Undangan ke Video Converter (HP View)</h2>
+  <input type="text" id="urlInput" placeholder="Masukkan link undangan digital" style="width: 400px;">
+  <button id="previewButton">Preview</button>
+  <button id="convertButton">Convert to Video</button>
+  <br><br>
+  <iframe id="previewFrame" sandbox src="" frameborder="0" width="100%" height="500"></iframe>
+  <p id="status"></p>
+  <a id="downloadLink" href="#" style="display:none">Download Video</a>
+
+  <script src="script.js"></script>
+</body>
+</html>
