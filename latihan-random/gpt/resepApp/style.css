@@ -1,0 +1,19 @@
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+textarea, input {
+    display: block;
+    margin: 5px 0 15px;
+    width: 300px;
+}
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+li {
+    background: #eee;
+    padding: 10px;
+    margin-bottom: 5px;
+}

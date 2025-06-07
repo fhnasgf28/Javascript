@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Manajer Resep</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>📒 Manajer Resep</h1>
+
+    <div>
+        <h2>Tambah Resep</h2>
+        <input id="recipe-name" placeholder="Nama Resep">
+        <textarea id="recipe-ingredients" placeholder="Bahan (pisahkan dengan koma)"></textarea>
+        <textarea id="recipe-instructions" placeholder="Instruksi"></textarea>
+        <button onclick="addRecipe()">Tambah</button>
+    </div>
+
+    <hr>
+
+    <div>
+        <h2>📋 Daftar Resep</h2>
+        <ul id="recipe-list"></ul>
+    </div>
+
+    <hr>
+
+    <div>
+        <h2>🛒 Daftar Belanja</h2>
+        <button onclick="generateShoppingList()">Buat Daftar Belanja</button>
+        <ul id="shopping-list"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
