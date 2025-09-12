@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday! 🎉</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#ff4d88; --accent:#ffd166; --bg:#0f1020; --card:#1a1b34; --text:#f5f7ff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:var(--text); background: radial-gradient(1200px 600px at 80% -10%, #2b2d55, transparent), var(--bg);
+      overflow-x:hidden;
+    }
+    header{ text-align:center; padding:56px 16px 24px }
+    h1{ margin:0; font-size:clamp(28px,5vw,48px); letter-spacing:0.5px }
+    h1 .name{ color:var(--accent) }
+    p.lead{ margin:10px auto 0; max-width:720px; opacity:.9 }
+    .card{
+      max-width:920px; margin:24px auto; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:24px; backdrop-filter: blur(8px);
+    }
+    .grid{ display:grid; gap:16px; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
+    }
+    .btn{
+      display:inline-block; background:linear-gradient(135deg, var(--primary), #ff8fab);
+      color:#fff; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:700; box-shadow:0 10px 30px rgba(255,77,136,.25);
+      transition: transform .15s ease;
+    }
+    .btn:active{ transform: scale(.98) }
+    .countdown{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap }
+    .t{ min-width:88px; text-align:center; background:#12132a; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:10px }
+    .num{ font-size:28px; font-weight:700 }
+    footer{ text-align:center; padding:24px; opacity:.7 }
+    /* confetti canvas overlay */
+    #confetti{ position:fixed; inset:0; pointer-events:none; z-index:5 }
+    /* floating balloons */
+    .balloons{ position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:4 }
+    .balloon{
+      position:absolute; bottom:-160px; width:60px; height:80px; background:var(--primary);
+      border-radius:60% 60% 60% 60%/70% 70% 50% 50%;
+      box-shadow: inset -8px -12px 24px rgba(0,0,0,.25);
+      animation: rise linear infinite;
+    }
+    .balloon::after{
+      content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:-30px; width:2px; height:30px; background:#fff3;
+    }
+    @keyframes rise{ from{ transform:translateY(0) translateX(0) rotate(2deg) } to{ transform:translateY(-120vh) translateX(-20px) rotate(-6deg) } }
+    /* gallery */
+    .gallery{ display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px }
+    .gallery img{ width:100%; height:160px; object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,.08) }
+    .center{ text-align:center }
+  </style>
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+  <div class="balloons" aria-hidden="true"></div>
+
+  <header>
+    <h1>Happy Birthday, <span class="name" id="nama">[Nama]</span>! 🎂</h1>
+    <p class="lead">Semoga tahun ini penuh tawa, kejutan manis, dan mimpi yang semakin dekat jadi nyata.</p>
+  </header>
+
+  <main class="card">
+    <div class="grid">
+      <div>
+        <h3>Hitung mundur ke momen tiup lilin</h3>
+        <div class="countdown" id="countdown" aria-live="polite">
+          <div class="t"><div class="num" id="d">00</div><div>Hari</div></div>
+          <div class="t"><div class="num" id="h">00</div><div>Jam</div></div>
+          <div class="t"><div class="num" id="m">00</div><div>Menit</div></div>
+          <div class="t"><div class="num" id="s">00</div><div>Detik</div></div>
+        </div>
+        <p class="center" style="margin:12px 0 0">
+          <a class="btn" id="playBtn">Putar musik 🎵</a>
+          <a class="pill" id="wishBtn">Buka pesan spesial ✨</a>
+        </p>
+      </div>
+      <div>
+        <h3>Galeri kenangan</h3>
+        <div class="gallery" id="galeri">
+          <img src="https://images.unsplash.com/photo-1541737118-1b5b8993dc75?q=80&w=800" alt="Momen 1">
+          <img src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd53?q=80&w=800" alt="Momen 2">
+          <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?q=80&w=800" alt="Momen 3">
+          <img src="https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?q=80&w=800" alt="Momen 4">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>Made with ❤ untuk hari spesialmu.</footer>
+
+  <audio id="bgm" preload="auto" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7d71a2b2e2.mp3?filename=happy-birthday-113340.mp3"></audio>
+
+  <script>
+    // konfigurasi personal
+    const CONFIG = {
+      nama: "Farhan",
+      // ganti ke waktu targetmu (format: YYYY-MM-DDTHH:MM:SS)
+      target: "2025-09-20T19:00:00",
+      wishes: [
+        "Barakallah fii umrik. Sehat, bahagia, rezeki lancar!",
+        "Semoga semua doa baikmu menemukan jalannya.",
+        "Tetap jadi versi terbaik dirimu—hari ini dan seterusnya."
+      ],
+      colors: ["#ff4d88","#ffd166","#6cf1ff","#a78bfa","#34d399","#f472b6"]
+    };
+
+    // set nama
+    document.getElementById("nama").textContent = CONFIG.nama;
+
+    // countdown
+    const dEl = document.getElementById("d"), hEl = document.getElementById("h"),
+          mEl = document.getElementById("m"), sEl = document.getElementById("s");
+    function pad(n){ return String(n).padStart(2,"0"); }
+    function tick(){
+      const now = new Date(), t = new Date(CONFIG.target) - now;
+      if (t <= 0){ dEl.textContent=hEl.textContent=mEl.textContent=sEl.textContent="00"; celebrate(); return; }
+      const d = Math.floor(t/86400000);
+      const h = Math.floor(t%86400000/3600000);
+      const m = Math.floor(t%3600000/60000);
+      const s = Math.floor(t%60000/1000);
+      dEl.textContent = pad(d); hEl.textContent = pad(h); mEl.textContent = pad(m); sEl.textContent = pad(s);
+    }
+    setInterval(tick, 1000); tick();
+
+    // confetti sederhana
+    const cvs = document.getElementById("confetti"), ctx = cvs.getContext("2d");
+    let pieces = [], w, h;
+    function resize(){ w = cvs.width = innerWidth; h = cvs.height = innerHeight; }
+    addEventListener("resize", resize); resize();
+    function spawn(n=120){
+      for(let i=0;i<n;i++){
+        pieces.push({
+          x: Math.random()*w, y: Math.random()*-h, s: 6+Math.random()*8,
+          c: CONFIG.colors[Math.floor(Math.random()*CONFIG.colors.length)],
+          vy: 2+Math.random()*3, vx: -1+Math.random()*2, rot: Math.random()*360, vr: -4+Math.random()*8
+        });
+      }
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      pieces.forEach(p=>{
+        p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr;
+        if(p.y > h+20) { p.y = -20; p.x = Math.random()*w; }
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot * Math.PI/180);
+        ctx.fillStyle = p.c;
+        ctx.fillRect(-p.s/2, -p.s/2, p.s, p.s*0.6);
+        ctx.restore();
+      });
+      requestAnimationFrame(draw);
+    }
+    spawn(200); draw();
+
+    // balon melayang
+    const balloonWrap = document.querySelector(".balloons");
+    function addBalloon(){
+      const b = document.createElement("div");
+      b.className = "balloon";
+      b.style.left = Math.random()*100 + "vw";
+      b.style.animationDuration = (10+Math.random()*10)+"s";
+      b.style.background = CONFIG.colors[Math.floor(Math.random()*CONFIG.colors.length)];
+      balloonWrap.appendChild(b);
+      setTimeout(()=> b.remove(), 22000);
+    }
+    setInterval(addBalloon, 800);
+
+    // musik + pesan
+    const audio = document.getElementById("bgm");
+    document.getElementById("playBtn").addEventListener("click", async ()=>{
+      try{ await audio.play(); }catch(e){}
+      celebrate();
+    });
+    document.getElementById("wishBtn").addEventListener("click", ()=>{
+      const msg = CONFIG.wishes[Math.floor(Math.random()*CONFIG.wishes.length)];
+      alert(msg);
+    });
+
+    // selebrasi (tambahkan confetti ekstra)
+    function celebrate(){ spawn(300); }
+  </script>
+</body>
+</html>
