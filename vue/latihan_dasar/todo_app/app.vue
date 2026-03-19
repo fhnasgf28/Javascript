@@ -40,7 +40,15 @@ export default {
         const currentFilter = ref('all');
         const filters = ref(null)
         const editingText = ref('');
-    }
+
+        // computed properties
+        const totalTodos = computed(() => todos.value.length)
+        const completedTodos = computed(() => todos.value.filter(todo => !todo.completed).length)
+        const progressPercentage = computed(() => {
+            if (totalTodos.value === 0) return 0
+            return Math.round((completedTodos.value / totalTodos.value) * 100)
+        })
+    }   
 
 }
 
