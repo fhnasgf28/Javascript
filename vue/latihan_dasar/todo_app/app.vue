@@ -7,8 +7,41 @@
 
         <main class="main-content">
             <section class="input-section">
-                
-            </section>
+        <div class="input-group">
+          <input 
+            v-model="newTodo" 
+            type="text" 
+            placeholder="Masukkan tugas baru..."
+            @keyup.enter="addTodo"
+            class="input-todo"
+          >
+          <button @click="addTodo" class="btn btn-primary">➕ Tambah</button>
+        </div>
+      </section>
         </main>
     </div>
 </template>
+
+<script>
+
+import {ref, computed} from 'vue';
+
+export default {
+    name: 'TodoApp',
+    setup() {
+        const todos = ref([
+            { id: 1, text: 'Belajar Vue.js', completed: true, createdAt: new Date() },
+            { id: 2, text: 'Membuat aplikasi Todo', completed: true, createdAt: new Date() },
+            { id: 3, text: 'Menerapkan fitur tambahan', completed: true, createdAt: new Date() }
+            
+        ])
+
+        const newTodo = ref('');
+        const currentFilter = ref('all');
+        const filters = ref(null)
+        const editingText = ref('');
+    }
+
+}
+
+</script>
