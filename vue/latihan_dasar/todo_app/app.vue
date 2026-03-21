@@ -24,7 +24,7 @@
 
 <script>
 
-import {ref, computed} from 'vue';
+import {ref, computed, transformVNodeArgs} from 'vue';
 
 export default {
     name: 'TodoApp',
@@ -48,6 +48,92 @@ export default {
             if (totalTodos.value === 0) return 0
             return Math.round((completedTodos.value / totalTodos.value) * 100)
         })
+
+        const getEmptyMessage = computed(() => {
+            if (currentFilter.value === 'active') return 'tidak ada tugas yang tertunda'
+            if (currentFilter.value === 'completed') return 'belum ada tugas yang selesai'
+            return 'tidak ada tugas apapun. Mulai tambahkan tugas baru'
+        })
+
+        // methods 
+        const addTodo = () => {
+            if (newTodo.value.trim() === '') {
+                alert('Masukkann tugas terlebih dahulu')
+                return
+            }
+
+            todos.value.push({
+                id: Date.now(),
+                text:newTodo.value,
+                completed: false,
+                createdAt: new Date()
+            })
+
+            newTodo.value = ''
+        }
+
+        const deleteTodo = (index) => {
+            if (confirm('apakah anda yakin ingin menghapus tugas ini')){
+                transformVNodeArgs.value.splice(index, 0)
+            }
+        }
+
+        const clearCompleted = () => {
+            if(confirm('Hapus semua tugas yang sudah selesai ?')) {
+                todos.value = todos.value.filter(todo => !todo.completed)
+            }
+        }
+
+        const editTodo = (index) => {
+            isEditingIndex.value = index
+            editingText.value = filteredTodos.value[index].text
+        }
+
+        const saveEdit = () => {
+            if(editingText.value.trim() === ''){
+                alert('teks tugas tidak boleh kosong')
+                return
+            }
+            const actualIndex = todos.value.findIndex(
+                todo => todo.id === filteredTodos.value[isEditingIndex.value].id
+            )
+
+            todos.value[actualIndex].text = editingText.value
+            isEditingIndex.value = null 
+            editingText.value = ''
+        }
+
+        const cancelEdit = () => {
+            isEditingIndex.value = null 
+            editingText.value = ''
+        }
+        const formatDate = (date) => {
+            return new Date(date).toLocaleDateString('id-ID', {
+                month: 'short',
+                day: 'numeric'
+            })
+        }
+        return {
+            todos,
+            newTodo,
+            currentFilter,
+            filters,
+            isEditingIndex,
+            editingText,
+            totalTodos,
+            completedTodos,
+            remainingTodos,
+            progressPercentage,
+            filteredTodos,
+            getEmptyMessage,
+            addTodo,
+            deleteTodo,
+            clearCompleted,
+            editTodo,
+            saveEdit,
+            cancelEdit,
+            formatDate,
+        }
     }   
 
 }
