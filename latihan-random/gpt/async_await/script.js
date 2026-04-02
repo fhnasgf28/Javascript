@@ -18,6 +18,7 @@ async function tampilkanData() {
     output.innerText = "Memuat data...";
     try {
         const hasil = await ambilData();
+        console.log("Data berhasil ditampilkan farhan", hasil);
         output.innerText = hasil;
     } catch (error) {
         output.innerText = "Terjadi kesalahan";
